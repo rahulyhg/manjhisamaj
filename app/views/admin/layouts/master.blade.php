@@ -42,11 +42,11 @@
             
             <div class="row">
         
-            <div class="col-lg-12">
-                <div class="message_area"> </div>
-            </div>
+                <div class="col-lg-12">
+                    <div class="message_area"> </div>
+                </div>
             
-        </div>
+            </div>
 
             @section('right-content')
                 @include('admin.layouts.right_section')
@@ -61,60 +61,33 @@
     
   
     @section('js-section')
-        
     @show
         
     <script type="text/javascript">
-                
+    
     $(function() {
     
         @if(Session::has('success'))
-            var mess =  [ 'message_area', 'success',     '{{ Session::get('success') }}'];
-            $('.message_area').notify({
-                message: {
-                    text: mess[2]
-                },
-                type: mess[1]
-            }).show();
-            
+            var mess =   '{{ Session::get('success') }}';
+	    bootBarNotify('success', mess);
         @endif
         
         @if(Session::has('error'))
-            var mess =  [ 'message_area', 'danger',     '{{ Session::get('error') }}'];
-            $('.message_area').notify({
-                message: {
-                    text: mess[2]
-                },
-                type: mess[1]
-            }).show();
-            
+            var mess =   '{{ Session::get('error') }}';
+	    bootBarNotify('error', mess);
         @endif
         
         @if(Session::has('warning'))
-            var mess =  [ 'message_area', 'warning',     '{{ Session::get('warning') }}'];
-            $('.message_area').notify({
-                message: {
-                    text: mess[2]
-                },
-                type: mess[1]
-            }).show();
-            
+            var mess =   '{{ Session::get('warning') }}';
+	    bootBarNotify('warning', mess);
         @endif
         
         @if(Session::has('info'))
-            var mess =  [ 'message_area', 'info',     '{{ Session::get('info') }}'];
-            $('.message_area').notify({
-                message: {
-                    text: mess[2]
-                },
-                type: mess[1]
-            }).show();
-            
+            var mess =   '{{ Session::get('info') }}';
+	    bootBarNotify('info', mess);
         @endif
-        
-        });
-        
-    </script>    
+    });
+    </script>
     
 </body>
 

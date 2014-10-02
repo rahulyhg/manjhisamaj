@@ -14,15 +14,15 @@ class SuperUsersController extends \BaseController {
 	
     public function index()
     {
-	    //print_r($this->common_helpers->getKeyValueArray('1', $this->common_helpers->bodyTypeArray()));
-	    //die;
-	    return View::make('admin.login.index');
+	//print_r($this->common_helpers->getKeyValueArray('1', $this->common_helpers->bodyTypeArray()));
+	//die;
+	return View::make('admin.login.index');
     }
     
     
     public function postSignin()
     {
-	    
+
 	//$email = Input::get('email');
 	$username = Input::get('username');
 	$password = Input::get('password');

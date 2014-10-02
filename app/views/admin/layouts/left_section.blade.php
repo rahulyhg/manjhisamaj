@@ -15,22 +15,36 @@
             <li>
                 <a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
-              
+            
             <li>
                 <a href="#">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Caste<span class="fa arrow"></span>
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Users <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ URL::action('CasteController@index') }}">Caste List</a>
+                        <a href="{{ URL::action('UserController@index') }}">User List</a>
                     </li>
                     <li>
-                        <a href="{{ URL::action('CasteController@create') }}">Add new Caste</a>
+                        <a href="{{ URL::action('UserController@create') }}">Add new User </a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
                 
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Events <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ URL::action('VEventController@index') }}">Event List</a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::action('VEventController@create') }}">Add new Event </a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li> 
             
             <li>
                 <a href="#">
@@ -77,6 +91,21 @@
                 <!-- /.nav-second-level -->
             </li>
             
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Caste<span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ URL::action('CasteController@index') }}">Caste List</a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::action('CasteController@create') }}">Add new Caste</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+                
             <li>
                 <a href="#">
                     <i class="fa fa-bar-chart-o fa-fw"></i> Education Category <span class="fa arrow"></span>

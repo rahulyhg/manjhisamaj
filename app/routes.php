@@ -17,7 +17,14 @@
 
 
 Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@postSignup');
+Route::post('/postSignup', 'HomeController@postSignup');
 
+/*
+ ********************************************
+ ******************** admin Area ************
+ ********************************************
+*/
 Route::group(array('prefix' => 'admin'), function()
 {
     Route::get('/', 'SuperUsersController@index');
@@ -40,6 +47,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('achievers', 'AchieverController');
     Route::resource('childs', 'ChildController');
     Route::resource('vevents', 'VEventController');
+    Route::resource('users', 'UserController');
     
 
 });

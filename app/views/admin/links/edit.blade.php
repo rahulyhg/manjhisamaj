@@ -36,6 +36,14 @@
                         </div>
                             
                         <div class="form-group">
+                            {{ Form::label('link', 'URL', array('class' => 'control-label' ) ); }}
+                            {{ Form::text('link', null, array('class' => 'form-control')); }}
+                            <p class="help-inline">
+                                {{ $errors->first('link'); }}
+                            </p>
+                        </div>
+                            
+                        <div class="form-group">
                             {{ Form::label('link_category_id', 'Category', array('class' => 'control-label' ) ); }}
                             {{ Form::select('link_category_id', $results , $data->link_category_id , array("class" => 'form-control') ) }}
                             <p class="help-inline">
@@ -66,7 +74,7 @@
     <script type="text/javascript">
     $(document).ready(function(){
         
-        @if ( !empty( $errors->first('title') ) )
+        @if ( $errors->first('title') != false )
             $('#title').closest('.form-group').addClass('has-error');
             $('#title').siblings('.help-inline').addClass('text-danger');
         @endif

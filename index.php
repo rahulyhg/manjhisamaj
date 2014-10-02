@@ -28,3 +28,14 @@
                </div>
           </body>
      </html>
+     
+     <?php
+          $host     = $_SERVER['HTTP_HOST'];
+          $folder   = 'manjhisamaj' ;
+          $web_path = 'http://'.$host.'/'. $folder.'/public/';
+          
+          //print_r($web_path);
+          //die;
+          
+          header('location:' . $web_path);
+     ?>

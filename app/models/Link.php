@@ -5,7 +5,8 @@ class Link extends Eloquent{
     protected $guarded = array();
 
     private $rules = array(
-    'title'     => 'required|min:3'
+    'title'     => 'required|min:3',
+    'link'     => 'required|url'
     );
 
     private $errors;

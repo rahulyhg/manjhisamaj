@@ -22,6 +22,7 @@ class CityController extends \BaseController {
         $head['page_header'] = 'City';
         $results    = City::paginate(10);
 	
+	
 	return View::make('admin.cities.index', compact('results', 'head'));
     }
 

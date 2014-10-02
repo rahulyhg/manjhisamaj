@@ -17,11 +17,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     
     protected $table = 'users';
 
-    public static $rules = array(
-	'username' => 'required',
-	'email' => 'required|email',
-	'password'=>'required'
+
+    
+    private $rules = array(
+	'username'     		=> 'required|min:5',
+	'email'         	=> 'email',
+	'password'     		=> 'required|min:6',
+	'confirm_password' 	=> 'required|same:password',
+	'first_name'    	=> 'required',
+	'date_of_birth'    	=> 'required',
+	'caste_id'    		=> 'required',
+	'gender'    		=> 'required',
+	'mobile1'    		=> 'required|max:15|numeric'
     );
+
+    private $errors;
     
     //protected $hidden = array('password', 'remember_token');
     protected $hidden = array('password');
@@ -61,6 +71,38 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->email;
     }
+    
+    
+    public function validate($data)
+    {
+//    	print_r($this->rules);
+//	die;
+    	$availableRule = array();
+    	foreach($this->rules as $field => $rules) {
+    		if (isset($data[$field])) {
+    			$availableRule[$field] = $rules;
+    		}    	
+    	}
+        // make a new validator object
+        $v = Validator::make($data, $availableRule);
+
+        if ($v->fails())
+        {
+            // set errors and return false
+            $this->errors = $v->errors();
+            return false;
+        }
+
+        // validation pass
+        return true;
+    }
+    //===============================================
+
+    public function errors()
+    {
+        return $this->errors;
+    }
+    //===============================================
     
     
 }

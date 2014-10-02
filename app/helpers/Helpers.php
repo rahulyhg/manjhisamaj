@@ -4,6 +4,69 @@ class Helpers {
     
     
     
+    
+    public function getLinksCategory(){
+        //return DB::table('link_categories')->get();
+        //return User::all();
+        
+        $links              = Link::with('linkcategories')->get();
+        $link_categories    = LinkCategory::get();
+        
+        return array('links' => $links, 'link_categories' => $link_categories);
+    }
+    //=================================
+    
+    
+    public function getDateOfBirth($age){
+    
+        $year = date('Y', time()) - $age;
+        
+        return date('Y-m-d H:m:s', mktime(0, 0, 0, 1, 1, $year));
+    
+    
+	//$age = $this->common_helpers->getDateOfBirth(19);
+	//print_r($age);
+	//die;
+    }
+    //=================================
+    
+    public function getAge($date_of_birth){
+        
+        $month 	= date('m',strtotime($date_of_birth));
+	$day 	= date('d',strtotime($date_of_birth));
+	$year 	= date('Y',strtotime($date_of_birth));
+        
+        
+        $age = (
+                date("md", date("U", mktime(0, 0, 0, $month, $day, $year))) > date("md")
+                ? ((date("Y") - $year) - 1)
+                : (date("Y") - $year)
+            );
+        return  $age;
+    
+    
+        //$age = $this->common_helpers->getAge($result->date_of_birth);
+	//print_r($age);
+	//die;
+    }
+    //=================================
+    
+    public function getProfileId(){
+        return 'M'.time();
+    }
+    //=================================
+    
+    public function getUserName(){
+        return 'U'.time();
+    }
+    //=================================
+    
+    public function getRandomPassword(){
+        return 'p'.time();
+    }
+    //=================================
+    
+    
     public function getKeyValueArray($key, $array){
         
         if(!empty($array)){

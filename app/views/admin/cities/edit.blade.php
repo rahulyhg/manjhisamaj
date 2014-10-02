@@ -75,7 +75,7 @@
     <script type="text/javascript">
     $(document).ready(function(){
         
-        @if ( !empty( $errors->first('title') ) )
+        @if ( $errors->first('title') != false )
             $('#title').closest('.form-group').addClass('has-error');
             $('#title').siblings('.help-inline').addClass('text-danger');
         @endif
