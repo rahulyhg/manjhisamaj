@@ -9,7 +9,7 @@
 @section('main_content')
 <div class="row">
     
-    <div class="col-md-6 wow fadeInDown">
+    <div class="col-sm-6 wow fadeInDown">
     
         <div id="login_form">
             {{ Form::open( array( 'action' => 'SuperUsersController@postSignin', 'method'=>'post', 'role'=>'form') ) }}
@@ -37,7 +37,7 @@
     
     </div>
         
-    <div class="col-md-6 wow fadeInDown">
+    <div class="col-sm-6 wow fadeInDown">
     
         <div class="col-md-10 col-sm-offset-1">
             {{ Form::open( array( 'action' => 'HomeController@postSignup', 'method'=>'post', 'role'=>'form') ) }}

@@ -1,3 +1,8 @@
 .form-group .help-inline{
     color: #BA4442;
 }
+
+.pagination .active span{
+    background-color:#C52D2F;
+    border: 1px solid #C52D2F;
+}

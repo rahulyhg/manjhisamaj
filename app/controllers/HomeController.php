@@ -37,10 +37,25 @@ class HomeController extends BaseController {
     
     public function index()
     {
+	$active_menu 		=  1;
 	$links 			= $this->links;
 	$link_categories 	= $this->link_categories;
 	$castes			= Caste::lists('title', 'id');
-	return View::make('front.home.index', compact('castes', 'links', 'link_categories'));
+	
+	return View::make('front.home.index', compact('active_menu', 'castes', 'links', 'link_categories'));
+    }
+    
+    
+    public function getSearch()
+    {
+	$active_menu 		=  2;
+	$links 			= $this->links;
+	$link_categories 	= $this->link_categories;
+	$castes			= Caste::lists('title', 'id');
+	$users			= User::paginate(10);
+	
+	
+	return View::make('front.home.search', compact('active_menu', 'castes', 'links', 'link_categories', 'users'));
     }
     
     

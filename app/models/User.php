@@ -97,12 +97,35 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return true;
     }
     //===============================================
-
+    
     public function errors()
     {
         return $this->errors;
     }
     //===============================================
     
+    public function caste()
+    {
+        return $this->hasOne('Caste');
+    }
+    //===============================================
+    
+    public function city()
+    {
+        return $this->hasOne('City');
+    }
+    //===============================================
+    
+    public function state()
+    {
+        return $this->hasOne('State');
+    }
+    //===============================================
+    
+    public function country()
+    {
+        return $this->hasOne('Country');
+    }
+    //===============================================
     
 }

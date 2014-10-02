@@ -17,6 +17,9 @@
 
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/search', 'HomeController@getSearch');
+
 //Route::get('/', 'HomeController@postSignup');
 Route::post('/postSignup', 'HomeController@postSignup');
 
@@ -48,6 +51,8 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('childs', 'ChildController');
     Route::resource('vevents', 'VEventController');
     Route::resource('users', 'UserController');
-    
+});
 
+Blade::extend(function($value) {
+    return preg_replace('/\@define(.+)/', '<?php ${1}; ?>', $value);
 });

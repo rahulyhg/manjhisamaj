@@ -89,3 +89,10 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+App::missing(function($exception)
+{
+	$active_menu = 1;
+	return Response::view('front.errors.missing', compact('active_menu'), 404);
+});
+

@@ -3,7 +3,7 @@
             <div class="row">
 		@if(!empty($link_categories) and count($link_categories) > 0)
 		    @foreach($link_categories as $link_category)
-			 <div class="col-md-3 col-sm-6">
+			 <div class="col-md-2 col-sm-3">
 			    <div class="widget">
 				<h3>{{ $link_category->title }}</h3>
 				<ul>
