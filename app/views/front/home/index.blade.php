@@ -40,7 +40,7 @@
     <div class="col-sm-6 wow fadeInDown">
     
         <div class="col-md-10 col-sm-offset-1">
-            {{ Form::open( array( 'action' => 'HomeController@postSignup', 'method'=>'post', 'role'=>'form') ) }}
+            {{ Form::open( array( 'action' => 'HomeController@postSignup', 'method'=>'post', 'role'=>'form', 'autocomplete' =>'off' ) ) }}
             <div class="form-group">
                 {{ Form::label('first_name', 'First Name', array('class' => 'control-label' ) ); }} *
                 {{ Form::text('first_name', '', array('class' => 'form-control', 'required'=>'required', 'placeholder'=>'First Name')); }}
@@ -134,6 +134,41 @@
         }).on('changeDate', function(ev){
            
             $(this).datepicker('hide');
+        });
+        
+        //username.exist
+        
+        $(document).on('keyup','#username', function(){
+            
+            var url = '{{ URL::route('username.exist') }}';
+            var username = $(this).val();
+            var thisid = $(this);
+            if (username.length < 5 ) {
+                $(this).siblings('.help-inline').html('Username must be greater than or equal to 5 character').css('color', 'red');
+                return false;
+            }
+            var dataString = 'username=' + username;
+            $.ajax({
+                url : url,
+                type : 'post',
+                dataType: 'json',
+                data : dataString,
+                cache: false,
+                success : function(data){
+                    console.log(data);
+                    console.log(data.message);
+                    $(thisid).siblings('.help-inline').empty();
+                    if (data.success == 1) {
+                        $(thisid).siblings('.help-inline').html(data.message).css('color', 'green');
+                        
+                    } else {
+                        $(thisid).siblings('.help-inline').html(data.message).css('color', 'red');
+                        
+                    }
+                    return false;
+                }
+            
+            });    
         });
         
     });

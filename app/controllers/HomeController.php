@@ -58,6 +58,24 @@ class HomeController extends BaseController {
 	return View::make('front.home.search', compact('active_menu', 'castes', 'links', 'link_categories', 'users'));
     }
     
+    public function getUserNameExist()
+    {
+	$username = Input::get('username');
+	$result = User::where('username', '=', $username)->get();
+	
+	if (!$result->isEmpty()) { 
+	    $data['data'] = '';
+	    $data['success'] = 0;
+	    $data['message'] = 'Username already existed';
+	} else {
+	    $data['data'] = '';
+	    $data['success'] = 1;
+	    $data['message'] = 'Username is vaild';
+	}
+	echo json_encode($data);
+	die();
+    }
+    
     
     public function postSignup()
     {
@@ -66,23 +84,30 @@ class HomeController extends BaseController {
 	$input['profile_code'] 	= $this->common_helpers->getProfileId();
 	
 	if ($this->user->validate($input)) {
-	    //print_r('v');
-	    //die;
 	    $input = array_except($input, array('_token', 'confirm_password'));
 	    $obj    = $this->user->create($input);
-            return Redirect::to('/')->with('success', 'Updated Record Successfully');
+            return Redirect::to('/')->with('success', 'Registration has been done successfully');
         } else {
             // failure
             $errors = $this->user->errors();
-	    //print_r($errors);
-	    //die;
-	    //Redirect::route('/')
-            return 
+	    return 
 		Redirect::to('/')
                 ->withInput()
                 ->withErrors($errors)
                 ->with('error', 'There were validation errors.');
         }
+    }
+    
+    
+    public function getPhotoUpload()
+    {
+	$active_menu 		=  2;
+	$links 			= $this->links;
+	$link_categories 	= $this->link_categories;
+	$castes			= Caste::lists('title', 'id');
+	$users			= User::paginate(10);
+	
+	return View::make('front.home.photoUpload', compact('active_menu', 'castes', 'links', 'link_categories', 'users'));
     }
     
     

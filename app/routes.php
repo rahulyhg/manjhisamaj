@@ -20,6 +20,14 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'HomeController@getSearch');
 
+Route::get('/profile/picture', 'HomeController@getPhotoUpload');
+
+Route::post( '/check/username/existence', array(
+    'as' => 'username.exist',
+    'uses' => 'HomeController@getUserNameExist'
+) );
+ 
+
 //Route::get('/', 'HomeController@postSignup');
 Route::post('/postSignup', 'HomeController@postSignup');
 
